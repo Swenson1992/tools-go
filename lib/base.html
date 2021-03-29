@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>base: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">tools/lib/base/base.go (0.0%)</option>
+				
+				<option value="file1">tools/lib/base/fibonacci.go (100.0%)</option>
+				
+				<option value="file2">tools/lib/base/slice.go (0.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package base
+
+import (
+        "fmt"
+        "strings"
+)
+
+func Base() <span class="cov0" title="0">{
+        // 由于 Go 语言的字符串都以 UTF-8 格式保存，每个中文占用 3 个字节
+        s := strings.Index("飞雪无情", "无")
+        fmt.Println(s, len("飞"))
+
+        // if 条件语句
+        if a := 10; a &gt; 10 </span><span class="cov0" title="0">{
+                fmt.Println("i&gt;10")
+        }</span> else<span class="cov0" title="0"> if a == 10 </span><span class="cov0" title="0">{
+                fmt.Println("i=10")
+        }</span> else<span class="cov0" title="0"> {
+                fmt.Println("i&lt;10")
+        }</span>
+
+        // switch 语句
+        // switch 在默认情况下，case 最后自带 break
+        <span class="cov0" title="0">switch i := 1; i </span>{
+        case 1:<span class="cov0" title="0">
+                fallthrough</span>
+        case 2:<span class="cov0" title="0">
+                fmt.Println("1")</span>
+        default:<span class="cov0" title="0">
+                fmt.Println("没有匹配")</span>
+        }
+
+        // for 循环语句
+        <span class="cov0" title="0">sum := 0
+        for j := 1; j &lt;= 100; j++ </span><span class="cov0" title="0">{
+                sum += j
+        }</span>
+        <span class="cov0" title="0">fmt.Println("the sum is ", sum)
+
+        //使用for模拟while
+        total := 0
+        index := 1
+        for index &lt;= 100 </span><span class="cov0" title="0">{
+                total += index
+                index++
+        }</span>
+        <span class="cov0" title="0">fmt.Println("the sum is ", total)
+
+        array := [5]string{"a", "b", "c", "d", "e"}
+        fmt.Println(array, len(array), array[2])
+        arr := [...]int{1, 2, 3}
+        fmt.Println(arr, len(arr))
+
+        for k := 0; k &lt; 5; k++ </span><span class="cov0" title="0">{
+                fmt.Printf("数组索引:%d,对应值:%s\n", k, array[k])
+        }</span>
+        // 数组循环
+        <span class="cov0" title="0">for i, v := range arr </span><span class="cov0" title="0">{
+                fmt.Printf("数组索引:%d,对应值:%d\n", i, v)
+        }</span>
+
+        <span class="cov0" title="0">slice := array[2:5]
+        fmt.Println(slice, len(slice))
+
+        slice1 := make([]string, 4, 8)
+        fmt.Println(slice1)
+
+        slice2 := []int{1, 2, 3, 4, 5}
+        fmt.Println(len(slice2), cap(slice2))
+
+        nameAgeMap := map[string]int{"宋健": 28}
+        //添加键值对或者更新对应 Key 的 Value
+        nameAgeMap["飞雪无情"] = 20
+
+        //获取指定 Key 对应的 Value
+        age, ok := nameAgeMap["飞雪无情"]
+        if ok </span><span class="cov0" title="0">{
+                fmt.Println(age)
+        }</span>
+
+        <span class="cov0" title="0">delete(nameAgeMap, "飞雪无情")
+        fmt.Println(nameAgeMap, len(nameAgeMap))
+
+        nameSexMap := make(map[string]string)
+        nameSexMap["宋健"] = "男"
+        fmt.Println(nameSexMap, len(nameSexMap))
+
+        ss := "Hello飞雪无情"
+        bs := []byte(ss)
+        fmt.Println(bs)
+        fmt.Println(ss[0], ss[1], ss[15])
+
+        for i, r := range ss </span><span class="cov0" title="0">{
+                fmt.Println(i, r)
+        }</span>
+
+        <span class="cov0" title="0">aa := [3][3]int{}
+        aa[0][0] = 1
+
+        fmt.Println(aa)</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package base
+
+func Fibonacci(n int) int <span class="cov8" title="1">{
+        if n &lt; 0 </span><span class="cov8" title="1">{
+                return 0
+        }</span>
+        <span class="cov8" title="1">if n == 0 </span><span class="cov8" title="1">{
+                return 0
+        }</span>
+        <span class="cov8" title="1">if n == 1 </span><span class="cov8" title="1">{
+                return 1
+        }</span>
+        <span class="cov8" title="1">return Fibonacci(n-1) + Fibonacci(n-2)</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package base
+
+import (
+        "errors"
+        "fmt"
+)
+
+func main() <span class="cov0" title="0">{
+        arr := []int{1, 2, 3}
+        // 改用地址的传参
+        add(&amp;arr)
+        fmt.Println(arr)
+        e := errors.New("原始错误e")
+        w := fmt.Errorf("Wrap了一个错误:%w", e)
+        fmt.Println(w)
+        fmt.Println(errors.Unwrap(w))
+        defer fmt.Println("defer 1")
+        defer fmt.Println("defer 2")
+        defer fmt.Println("defer 3")
+        defer fmt.Println("defer 4")
+        fmt.Println(errors.Is(w, e))
+}</span>
+
+// 这个函数不能有返回值，也不能定义全局变量， 怎么改变原切片的内容并返回
+func add(arr *[]int) <span class="cov0" title="0">{
+        *arr = append(*arr, 10)
+}</span>
+
+// 实际输出  [1, 2, 3]
+// 期望输出  [1, 2, 3, 10]
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
